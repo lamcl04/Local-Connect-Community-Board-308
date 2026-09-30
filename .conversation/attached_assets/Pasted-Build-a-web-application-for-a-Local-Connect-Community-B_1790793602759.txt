@@ -1,0 +1,64 @@
+Build a web application for a "Local Connect Community Board" using HTML, CSS (Tailwind CSS via CDN), and modern JavaScript. The app connects local small businesses (e.g., bakeries, cafes) with local non-profits by displaying urgent donation and volunteer requests in a clean, highly scannable feed.
+
+Here are the functional requirements and specifications:
+
+1. CORE CONCEPT & SCOPE
+- The app is a single-page community board focused on displaying real-time, active requests from local non-profits (such as surplus food pickup, physical supplies, or short volunteer shifts).
+- It requires NO user authentication, backend database, payment processing, or complex logins.
+- The UI must be fully responsive, modern, and mobile-friendly.
+
+2. DATA MODEL & INITIAL SEED DATA
+- Store all request data in a local JavaScript array or JSON file (`data/requests.json`).
+- Seed the app with 6–8 realistic sample requests from Harrisonburg, VA non-profits (e.g., local food pantries, homeless shelters, community centers).
+- Each request item must include the following properties:
+  - `id`: Unique string/number
+  - `organizationName`: Name of non-profit
+  - `contactPerson`: Name of point of contact
+  - `contactEmail`: Email address
+  - `contactPhone`: Phone number
+  - `title`: Short title (e.g., "30 Fresh Pastries Needed for Evening Shelter")
+  - `description`: Brief overview of the need
+  - `category`: "Food & Goods", "Volunteer Labor", "Supplies", or "Marketing"
+  - `quantityNeeded`: Specific numeric/text count (e.g., "30 pastries / loaves")
+  - `timeframe`: Urgency/deadline (e.g., "Needed Today by 4:00 PM")
+  - `logistics`: "Pick-up Available" or "Drop-off Required"
+  - `requirements`: Tags like "Refrigeration Needed", "Individual Packaging", or "Must be 18+"
+  - `isUrgent`: Boolean (true/false)
+
+3. USER INTERFACE & FEATURES
+
+Header & Navigation:
+- Clean header with the app title ("Local Connect"), a brief subtitle ("Connecting local businesses with immediate non-profit needs"), and a "Post a Need" button that opens a simple modal with instructions on how non-profits can submit requests via email.
+
+Search & Filter Bar:
+- Search input to filter requests by non-profit name, title, or keywords.
+- Category Filter: Buttons or dropdown for "All Categories", "Food & Goods", "Volunteer Labor", "Supplies", and "Marketing".
+- Logistics Filter: Filter by "All Logistics", "Pick-up Available", or "Drop-off Required".
+- Urgency Toggle: A quick filter switch to view "Same-Day Urgent Needs Only".
+
+Community Board Feed:
+- Grid layout displaying high-scannability request cards.
+- Each card must display:
+  - Non-Profit Name & Contact Person
+  - Category tag with color-coded badges
+  - Request Title & Description
+  - Quantity Needed (highlighted prominently)
+  - Time Window / Expiration (with a visible badge if urgent)
+  - Logistics Tag ("Pick-up Available" vs "Drop-off Required")
+  - Special Requirements tags (refrigeration, packaging, etc.)
+  - A primary Action Button: "I Can Help"
+
+Action Flow ("I Can Help"):
+- When a user clicks "I Can Help", open a lightweight modal overlay showing the complete request details and non-profit contact information.
+- Provide two direct contact buttons:
+  1. "Email Non-Profit" (`mailto:` link pre-filled with the subject "Offering Help: [Opportunity Title]" and a polite message body template).
+  2. "Call/Text Non-Profit" (`tel:` link to the phone number).
+- Include a small notice: "No login required. Contacting the non-profit directly will initiate coordination."
+
+4. DESIGN & STYLING GUIDELINES
+- Use Tailwind CSS for fast, modern styling.
+- Color scheme: Clean slate/zinc background, warm emerald green primary buttons/accents (conveying community & giving), and soft red/amber badges for urgent same-day deadlines.
+- Clean typography with clear hierarchy so busy business owners can read a card in under 10 seconds.
+- Ensure empty search/filter states display a helpful message (e.g., "No matching requests found. Try clearing your filters.").
+
+Please scaffold the file structure cleanly (index.html, styles/tailwind setup, app.js, and data/requests.json), implement all interactive filtering/modals, and ensure the app is ready to run directly.

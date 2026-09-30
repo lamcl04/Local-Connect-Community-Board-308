@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Local Connect"
+description = "A responsive community board connecting Harrisonburg, VA businesses with urgent donation and volunteer needs from local nonprofits."
+version = "1.0.0"
+id = "artifacts/local-connect"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 25077
+
+[services.development]
+run = "pnpm --filter @workspace/local-connect run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/local-connect", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/local-connect/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "25077"
+BASE_PATH = "/"
