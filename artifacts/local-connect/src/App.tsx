@@ -1,4 +1,4 @@
-import { type ReactNode, useEffect, useMemo, useState } from 'react';
+import { type ReactNode, useEffect, useId, useMemo, useRef, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import {
   ArrowRight,
@@ -58,16 +58,55 @@ function Modal({
   footer?: ReactNode;
   wide?: boolean;
 }) {
+  const titleId = useId();
+  const dialogRef = useRef<HTMLElement>(null);
+
   useEffect(() => {
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') onClose();
+    const dialog = dialogRef.current;
+    const previouslyFocusedElement = document.activeElement as HTMLElement | null;
+    const getFocusableElements = () => {
+      if (!dialog) return [];
+      return Array.from(dialog.querySelectorAll<HTMLElement>(
+        'button:not([disabled]), a[href], input:not([disabled]), select:not([disabled]), textarea:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      ));
     };
+
+    getFocusableElements()[0]?.focus();
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        onClose();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+
+      const focusableElements = getFocusableElements();
+      if (focusableElements.length === 0) {
+        event.preventDefault();
+        return;
+      }
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+      if (event.shiftKey && document.activeElement === firstElement) {
+        event.preventDefault();
+        lastElement.focus();
+      } else if (!event.shiftKey && document.activeElement === lastElement) {
+        event.preventDefault();
+        firstElement.focus();
+      }
+    };
+
     document.addEventListener('keydown', onKeyDown);
     const previousOverflow = document.body.style.overflow;
     document.body.style.overflow = 'hidden';
+
     return () => {
       document.removeEventListener('keydown', onKeyDown);
       document.body.style.overflow = previousOverflow;
+      if (previouslyFocusedElement && document.contains(previouslyFocusedElement)) {
+        previouslyFocusedElement.focus();
+      }
     };
   }, [onClose]);
 
@@ -80,16 +119,17 @@ function Modal({
       }}
     >
       <section
+        ref={dialogRef}
         className={`lc-modal ${wide ? 'lc-modal-wide' : ''}`}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="modal-title"
+        aria-labelledby={titleId}
         onMouseDown={(event) => event.stopPropagation()}
       >
         <div className="lc-modal-header">
           <div>
             <div className="lc-modal-kicker">{kicker}</div>
-            <h2 className="lc-modal-title" id="modal-title">{title}</h2>
+            <h2 className="lc-modal-title" id={titleId}>{title}</h2>
           </div>
           <button className="lc-close" type="button" onClick={onClose} aria-label="Close dialog" data-testid="button-close-modal">
             <X size={17} />
@@ -211,9 +251,10 @@ function PostNeedModal({ onClose }: { onClose: () => void }) {
             value={details}
             onChange={(event) => setDetails(event.target.value)}
             placeholder={'Your organization, contact name, email, and phone\nA short title and description of the need\nCategory, quantity, timeframe, and logistics\nRequirements, helper notes, and same-day urgency'}
+            aria-describedby="need-details-hint"
             data-testid="input-need-details"
           />
-          <p className="lc-field-hint">You can type or paste the request details here before sending them to the submission email above.</p>
+          <p className="lc-field-hint" id="need-details-hint">You can type or paste the request details here before sending them to the submission email above.</p>
           <div className="lc-submit-row">
             <button className="lc-primary-button" type="button" onClick={submitRequest} data-testid="button-submit-need">
               Submit <Send size={15} />
@@ -301,9 +342,9 @@ function Home() {
 
         <div className="lc-feed-head">
           <h2 className="lc-feed-title">Current needs</h2>
-          <div className="lc-feed-count" data-testid="text-result-count">{filteredRequests.length} of {localRequests.length} requests</div>
+          <div className="lc-feed-count" role="status" aria-live="polite" aria-atomic="true" data-testid="text-result-count">{filteredRequests.length} of {localRequests.length} requests</div>
         </div>
-        <section className="lc-grid" aria-live="polite" aria-label="Local nonprofit requests">
+        <section className="lc-grid" aria-label="Local nonprofit requests">
           {filteredRequests.length > 0 ? filteredRequests.map((request, index) => <RequestCard key={request.id} request={request} index={index} onHelp={setSelectedRequest} />) : (
             <div className="lc-empty" data-testid="empty-results">
               <div className="lc-empty-icon"><Search size={22} /></div>

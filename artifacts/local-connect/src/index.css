@@ -47,14 +47,14 @@
   --foreground: 213 32% 18%;
   --border: 39 24% 84%;
   --input: 39 24% 84%;
-  --ring: 16 82% 55%;
+  --ring: 16 82% 42%;
   --card: 42 50% 99%;
   --card-foreground: 213 32% 18%;
   --card-border: 39 24% 85%;
   --popover: 42 50% 99%;
   --popover-foreground: 213 32% 18%;
   --popover-border: 39 24% 82%;
-  --primary: 16 82% 55%;
+  --primary: 16 82% 42%;
   --primary-foreground: 42 50% 99%;
   --secondary: 162 31% 88%;
   --secondary-foreground: 163 38% 20%;
@@ -121,7 +121,7 @@
   }
   button, input, select { font: inherit; }
   button { cursor: pointer; }
-  :focus-visible { outline: 3px solid hsl(var(--accent)); outline-offset: 3px; }
+  :focus-visible { outline: 3px solid hsl(var(--ring)); outline-offset: 3px; }
 }
 
 @keyframes rise-in {
@@ -253,7 +253,7 @@
 .lc-modal-footer { display: flex; justify-content: flex-end; gap: 9px; padding: 16px 26px 23px; }
 .lc-secondary-button { background: transparent; color: hsl(var(--foreground)); border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 10px 14px; font-size: .8rem; font-weight: 700; }
 .lc-primary-button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); border: 0; border-radius: 8px; padding: 10px 14px; font-size: .8rem; font-weight: 700; transition: transform .2s ease, background .2s ease; }
-.lc-primary-button:hover { transform: translateY(-2px); background: hsl(16 82% 49%); }
+.lc-primary-button:hover { transform: translateY(-2px); background: hsl(16 82% 37%); }
 
 @media (max-width: 760px) {
   .lc-header-inner { padding: 17px 17px 45px; }
@@ -278,4 +278,15 @@
   .lc-toggle { width: 100%; }
   .lc-detail-grid { grid-template-columns: 1fr; }
   .lc-modal-header, .lc-modal-body, .lc-modal-footer { padding-left: 19px; padding-right: 19px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }
