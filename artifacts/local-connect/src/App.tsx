@@ -181,6 +181,8 @@ function HelpModal({ request, onClose }: { request: LocalRequest; onClose: () =>
 }
 
 function PostNeedModal({ onClose }: { onClose: () => void }) {
+  const [details, setDetails] = useState('');
+
   return (
     <Modal
       title="Put a need on the board"
@@ -195,14 +197,17 @@ function PostNeedModal({ onClose }: { onClose: () => void }) {
           <div><small>Submit requests to</small><a href="mailto:hello@localconnecthburg.org" data-testid="link-submit-email">hello@localconnecthburg.org</a></div>
         </div>
         <div className="lc-detail-block">
-          <h4>Include these details</h4>
-          <ul className="lc-detail-requirements" style={{ marginBottom: 0 }}>
-            <li>Your organization, contact name, email, and phone</li>
-            <li>A short, specific title and description of the need</li>
-            <li>Category, quantity, timeframe, and logistics</li>
-            <li>Any requirements or notes for a potential helper</li>
-            <li>Whether the request needs same-day attention</li>
-          </ul>
+          <label className="lc-field-label" htmlFor="need-details">Include these details</label>
+          <textarea
+            id="need-details"
+            className="lc-details-input"
+            rows={7}
+            value={details}
+            onChange={(event) => setDetails(event.target.value)}
+            placeholder={'Your organization, contact name, email, and phone\nA short title and description of the need\nCategory, quantity, timeframe, and logistics\nRequirements, helper notes, and same-day urgency'}
+            data-testid="input-need-details"
+          />
+          <p className="lc-field-hint">You can type or paste the request details here before sending them to the submission email above.</p>
         </div>
         <p className="lc-instructions" style={{ marginTop: '18px', marginBottom: 0 }}>We welcome needs from nonprofits serving Harrisonburg, Rockingham County, and the surrounding Shenandoah Valley.</p>
       </div>
