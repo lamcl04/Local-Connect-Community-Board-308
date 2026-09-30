@@ -238,6 +238,7 @@
 .lc-details-input::placeholder { color: hsl(var(--muted-foreground)); opacity: .9; }
 .lc-details-input:focus { border-color: hsl(var(--primary)); box-shadow: 0 0 0 3px hsl(var(--primary) / .14); outline: none; }
 .lc-field-hint { margin-top: 8px !important; color: hsl(var(--muted-foreground)); font-size: .72rem !important; font-weight: 400 !important; line-height: 1.45 !important; }
+.lc-submit-row { display: flex; justify-content: flex-end; margin-top: 14px; }
 .lc-detail-requirements { margin: 0 0 22px; padding-left: 19px; color: hsl(var(--muted-foreground)); font-size: .83rem; line-height: 1.75; }
 .lc-contact-row { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 15px; }
 .lc-contact-link { display: inline-flex; align-items: center; gap: 7px; color: hsl(var(--foreground)); border: 1px solid hsl(var(--border)); border-radius: 8px; padding: 9px 11px; font-size: .76rem; text-decoration: none; font-weight: 700; transition: border .2s ease, background .2s ease; }

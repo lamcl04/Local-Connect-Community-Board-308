@@ -13,6 +13,7 @@ import {
   Phone,
   Plus,
   Search,
+  Send,
   Truck,
   Users,
   X,
@@ -182,6 +183,11 @@ function HelpModal({ request, onClose }: { request: LocalRequest; onClose: () =>
 
 function PostNeedModal({ onClose }: { onClose: () => void }) {
   const [details, setDetails] = useState('');
+  const submitRequest = () => {
+    const subject = encodeURIComponent('New Local Connect board request');
+    const body = encodeURIComponent(details.trim());
+    window.location.href = `mailto:hello@localconnecthburg.org?subject=${subject}&body=${body}`;
+  };
 
   return (
     <Modal
@@ -208,6 +214,11 @@ function PostNeedModal({ onClose }: { onClose: () => void }) {
             data-testid="input-need-details"
           />
           <p className="lc-field-hint">You can type or paste the request details here before sending them to the submission email above.</p>
+          <div className="lc-submit-row">
+            <button className="lc-primary-button" type="button" onClick={submitRequest} data-testid="button-submit-need">
+              Submit <Send size={15} />
+            </button>
+          </div>
         </div>
         <p className="lc-instructions" style={{ marginTop: '18px', marginBottom: 0 }}>We welcome needs from nonprofits serving Harrisonburg, Rockingham County, and the surrounding Shenandoah Valley.</p>
       </div>
