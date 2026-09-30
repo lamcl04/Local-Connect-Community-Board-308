@@ -171,7 +171,7 @@
 .lc-post-button { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(246,194,64,.48); background: transparent; color: hsl(var(--accent)); border-radius: 999px; padding: 9px 15px; font-size: .82rem; font-weight: 700; transition: background .2s ease, color .2s ease, transform .2s ease; }
 .lc-post-button:hover { background: hsl(var(--accent)); color: hsl(var(--foreground)); transform: translateY(-2px); }
 .lc-kicker { margin: 53px 0 12px; color: hsl(var(--accent)); font-family: var(--app-font-mono); text-transform: uppercase; font-size: .69rem; font-weight: 500; letter-spacing: .17em; }
-.lc-title { max-width: 680px; margin: 0; font-family: var(--app-font-serif); font-weight: 700; font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: .94; letter-spacing: -.055em; color: hsl(var(--sidebar-foreground)); }
+.lc-title { max-width: 680px; margin: 0; font-family: var(--app-font-serif); font-weight: 700; font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: .94; letter-spacing: -.035em; color: hsl(var(--sidebar-foreground)); }
 .lc-title em { font-style: normal; color: hsl(var(--accent)); }
 .lc-intro { max-width: 560px; color: rgba(247,244,235,.69); margin: 19px 0 0; font-size: 1rem; line-height: 1.65; }
 .lc-main { max-width: 1180px; margin: 0 auto; padding: 0 24px 72px; }
