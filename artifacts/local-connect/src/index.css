@@ -168,7 +168,7 @@
 .lc-brand-name { font-family: var(--app-font-serif); font-size: 1.35rem; font-weight: 700; letter-spacing: -.025em; }
 .lc-brand-sub { display: block; color: rgba(247,244,235,.63); font-size: .68rem; line-height: 1; margin-top: 2px; letter-spacing: .11em; text-transform: uppercase; font-weight: 600; }
 .lc-header-nav { display: flex; justify-content: space-between; align-items: center; gap: 20px; }
-.lc-post-button { display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(246,194,64,.48); background: transparent; color: hsl(var(--accent)); border-radius: 999px; padding: 9px 15px; font-size: .82rem; font-weight: 700; transition: background .2s ease, color .2s ease, transform .2s ease; }
+.lc-post-button { position: absolute; z-index: 2; top: 20px; right: calc(35px - max(0px, 50vw - 590px)); display: inline-flex; align-items: center; gap: 8px; border: 1px solid rgba(246,194,64,.48); background: transparent; color: hsl(var(--accent)); border-radius: 999px; padding: 9px 15px; font-size: .82rem; font-weight: 700; transition: background .2s ease, color .2s ease, transform .2s ease; }
 .lc-post-button:hover { background: hsl(var(--accent)); color: hsl(var(--foreground)); transform: translateY(-2px); }
 .lc-kicker { margin: 53px 0 12px; color: hsl(var(--accent)); font-family: var(--app-font-mono); text-transform: uppercase; font-size: .69rem; font-weight: 500; letter-spacing: .17em; }
 .lc-title { max-width: 680px; margin: 0; font-family: var(--app-font-serif); font-weight: 700; font-size: clamp(2.6rem, 7vw, 5.5rem); line-height: .94; letter-spacing: -.035em; color: hsl(var(--sidebar-foreground)); }
@@ -257,9 +257,10 @@
 
 @media (max-width: 760px) {
   .lc-header-inner { padding: 17px 17px 45px; }
+  .lc-header::after { width: min(330px, 92vw); height: min(330px, 92vw); right: -90px; top: -140px; }
   .lc-header-nav { align-items: flex-start; }
+  .lc-post-button { top: 56px; right: 18px; padding: 8px 11px; font-size: .74rem; }
   .lc-brand-sub { display: none; }
-  .lc-post-button { padding: 8px 11px; font-size: .74rem; }
   .lc-kicker { margin-top: 45px; }
   .lc-title { font-size: clamp(2.7rem, 14vw, 4.3rem); }
   .lc-main { padding: 0 15px 52px; }
