@@ -150,18 +150,6 @@
   position: relative;
   overflow: hidden;
 }
-.lc-header::after {
-  content: '';
-  position: absolute;
-  width: 330px;
-  height: 330px;
-  border: 1px solid rgba(246, 194, 64, .25);
-  border-radius: 50%;
-  right: -115px;
-  top: -195px;
-  box-shadow: 0 0 0 26px rgba(246, 194, 64, .05), 0 0 0 52px rgba(246, 194, 64, .035);
-  pointer-events: none;
-}
 .lc-header-inner { position: relative; z-index: 1; max-width: 1180px; margin: 0 auto; padding: 20px 24px 54px; }
 .lc-brand { display: flex; align-items: center; gap: 11px; color: inherit; text-decoration: none; }
 .lc-mark { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 11px 11px 11px 3px; background: hsl(var(--accent)); color: hsl(var(--foreground)); box-shadow: 5px 5px 0 rgba(246, 194, 64, .2); }
@@ -255,12 +243,8 @@
 .lc-primary-button { display: inline-flex; align-items: center; justify-content: center; gap: 7px; background: hsl(var(--primary)); color: hsl(var(--primary-foreground)); border: 0; border-radius: 8px; padding: 10px 14px; font-size: .8rem; font-weight: 700; transition: transform .2s ease, background .2s ease; }
 .lc-primary-button:hover { transform: translateY(-2px); background: hsl(16 82% 37%); }
 
-@media (min-width: 761px) {
-  .lc-header::after { width: 310px; height: 310px; right: -65px; top: -240px; }
-}
 @media (max-width: 760px) {
   .lc-header-inner { padding: 17px 17px 45px; }
-  .lc-header::after { width: min(330px, 92vw); height: min(330px, 92vw); right: -90px; top: -140px; }
   .lc-header-nav { align-items: center; gap: 10px; }
   .lc-post-button { position: static; flex: 0 0 auto; padding: 8px 11px; font-size: .74rem; }
   .lc-brand-sub { display: none; }
