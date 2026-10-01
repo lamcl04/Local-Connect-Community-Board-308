@@ -258,10 +258,10 @@
 @media (max-width: 760px) {
   .lc-header-inner { padding: 17px 17px 45px; }
   .lc-header::after { width: min(330px, 92vw); height: min(330px, 92vw); right: -90px; top: -140px; }
-  .lc-header-nav { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .lc-post-button { position: static; align-self: flex-end; padding: 8px 11px; font-size: .74rem; }
+  .lc-header-nav { align-items: center; gap: 10px; }
+  .lc-post-button { position: static; flex: 0 0 auto; padding: 8px 11px; font-size: .74rem; }
   .lc-brand-sub { display: none; }
-  .lc-kicker { margin-top: 16px; }
+  .lc-kicker { margin-top: 45px; }
   .lc-title { font-size: clamp(2.7rem, 14vw, 4.3rem); }
   .lc-main { padding: 0 15px 52px; }
   .lc-filter-rail { margin-top: -24px; padding: 11px; }
@@ -272,6 +272,12 @@
   .lc-card { padding: 20px; }
   .lc-feed-head { padding-top: 32px; }
   .lc-footer { padding: 0 15px 30px; flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 360px) {
+  .lc-brand { gap: 8px; }
+  .lc-mark { width: 34px; height: 34px; }
+  .lc-brand-name { font-size: 1.1rem; }
+  .lc-post-button { gap: 5px; padding: 7px 8px; font-size: .68rem; }
 }
 @media (max-width: 420px) {
   .lc-filter-grid { grid-template-columns: 1fr; }
