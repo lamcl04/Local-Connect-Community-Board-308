@@ -261,7 +261,7 @@
   .lc-header-nav { align-items: center; gap: 10px; }
   .lc-post-button { position: static; flex: 0 0 auto; padding: 8px 11px; font-size: .74rem; }
   .lc-brand-sub { display: none; }
-  .lc-kicker { margin-top: 45px; }
+  .lc-kicker { margin-top: 28px; }
   .lc-title { font-size: clamp(2.7rem, 14vw, 4.3rem); }
   .lc-main { padding: 0 15px 52px; }
   .lc-filter-rail { margin-top: -24px; padding: 11px; }
